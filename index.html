@@ -1,0 +1,77 @@
+<html>
+<!--
+This source code and software is provided under the following license:
+
+  MIT NON-AI License
+
+Copyright (c) 2026, Lisa Seelye
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of the software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions.
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+In addition, the following restrictions apply:
+
+1. The Software and any modifications made to it may not be used for the purpose of training or improving machine learning algorithms, including but not limited to artificial intelligence, natural language processing, or data mining. This condition applies to any derivatives, modifications, or updates based on the Software code. Any usage of the Software in an AI-training dataset is considered a breach of this License.
+
+2. The Software may not be included in any dataset used for training or improving machine learning algorithms, including but not limited to artificial intelligence, natural language processing, or data mining.
+
+3. Any person or organization found to be in violation of these restrictions will be subject to legal action and may be held liable for any damages resulting from such use.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+  <head>
+    <title>Calculator for Echoes of Eternity</title>
+  </head>
+</html>
+<body onload="compute()">
+  <script>
+    // How many more times will the original thing happen?
+    function bonus_from_echoes(echoes_in_play) {
+      return echoes_in_play * echoes_in_play
+    }
+
+    function compute() {
+      let echoes_in_play = Number(document.getElementById("echoes").value)
+      let fleshrakers_in_play = Number(document.getElementById("fleshrakers").value)
+
+      let echo_triggers = bonus_from_echoes(echoes_in_play)
+      console.log("Triggers")
+      console.log(echo_triggers)
+
+      let tokens_created = (fleshrakers_in_play * echo_triggers) + fleshrakers_in_play
+      let total_damage = tokens_created * (echo_triggers + fleshrakers_in_play)
+
+      let bonus_damage = echo_triggers * tokens_created
+      let token_bonus = echo_triggers
+
+      document.getElementById("copies").value = echo_triggers
+      document.getElementById("scions").value = tokens_created
+      document.getElementById("scion_damage").value = total_damage
+      document.getElementById("scion_bonus").value = token_bonus
+      document.getElementById("damage_bonus").value = bonus_damage
+    }
+  </script>
+  <form id="calculator">
+    <p id="inputs">
+      <label for="fleshrakers">Number of Fleshrakers in play</label>
+      Number of <a href="https://scryfall.com/card/mh3/7/glaring-fleshraker">Glaring Fleshrakers</a> in play: <input type="number" id="fleshrakers" value="1" min="0" size="2" onchange="compute()"><br />
+      <label for="echoes">Number of Echoes of Eternity in play</label>
+      Number of <a href="https://scryfall.com/card/mh3/4/echoes-of-eternity">Echoes of Eternity</a> in play: <input type="number" id="echoes" value="0" min="0" onchange="compute()"><br />
+    </p>
+    <p id="calculations">
+
+    <strong>For each colourless spell cast...</strong><br /><br />
+
+    Copies of spell or trigger (from Echoes of Eternity): <input type="text" id="copies" readonly="true"><br />
+    Eldrazi Scions from Fleshrakers: <input type="text" id="scions" readonly="true"><br />
+    Damage Eldrazi Scions created: <input type="text" id="scion_damage" readonly="true"></br >
+    Scions from Echo Triggers: <input type="text" id="scion_bonus" readonly="true"><br />
+    Damage from Echo triggers: <input type="text" id="damage_bonus" readonly="true"><br />
+    </p>
+
+
+  </form>
+  <button onclick="compute()">I cast a colourless spell</button>
+  
+</body>
