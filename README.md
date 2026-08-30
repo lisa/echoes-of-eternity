@@ -83,4 +83,4 @@ In terms of only Glaring Fleshrakers and Echoes of Eternities:
 
 $$d = f(e^{2}+1) * (e^{2} + f)$$
 
-Simple, right? Just use the calculator and everything will be easier.
+Simple, right? Just [use the calculator](https://lisa.github.io/echoes-of-eternity/) and everything will be easier.
